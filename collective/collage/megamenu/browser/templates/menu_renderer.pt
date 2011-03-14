@@ -1,0 +1,23 @@
+<ul id="portal-megamenu" class="megamenu"
+    tal:define="items view/getItems">
+
+    <li tal:repeat="item items" class="top-level">
+        <a class="menu-item" href="" 
+            tal:attributes="href item/url; 
+                            title item/description;
+                            class string:menu-item ${item/class}">
+            <tal:title content="item/title">
+            Menu item
+            </tal:title>
+            
+            <span class="arrowDownAlternative" tal:condition="item/with_menu">
+                &#9660
+            </span>
+        </a>
+
+        <div class="sub" 
+            tal:condition="item/with_menu"
+            tal:content="structure item/dropdown" />
+    </li>
+    
+</ul>
