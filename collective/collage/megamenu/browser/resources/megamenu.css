@@ -20,7 +20,7 @@
 	position: relative;
 }
 
-#portal-megamenu li.top-level a.menu-item {
+#portal-megamenu li a.menu-item {
 	float: left; 
 	height: 44px;
 	padding: 0.5em 1em 0em;
@@ -29,10 +29,16 @@
 	min-width: 6em;
 }
 
+#portal-megamenu li a.menu-item:hover {
+    background: #ccc;
+}
+
 #portal-megamenu li.active a.menu-item {
     background: #205c90;
     color: white;
 }
+
+
  
 #portal-megamenu li.top-level .sub {
 	position: absolute;	

@@ -1,10 +1,13 @@
+/* Copied and adapted from http://www.sohtanaka.com/web-design/mega-drop-downs-w-css-jquery/ */
+
 $(document).ready(function() {
 	
  
 	function megaHoverOver(){
-		var me = $(this);
-		var sub = me.find('.sub');
-		sub.stop().fadeTo(100, 1);
+    	var me = $(this);
+    	me.addClass('active');
+    	var sub = me.find('.sub');
+		sub.stop().fadeTo(100, 1).show();
 			
 		//Calculate width of all ul's
 		(function($) { 
@@ -17,10 +20,11 @@ $(document).ready(function() {
 			};
 		})(jQuery); 
 		
-		if ( me.find(".collage-row").length > 0 ) { //If row exists...
+		var rows = me.find('.collage-row');
+		if (rows.length > 0 ) { //If row exists...
 			var biggestRow = 0;	
 			//Calculate each row
-			me.find(".collage-row").each(function() {							   
+			rows.each(function() {							   
 				$(this).calcSubWidth();
 				//Find biggest row
 				if(rowWidth > biggestRow) {
@@ -29,43 +33,44 @@ $(document).ready(function() {
 			});
 			//Set width
 			sub.css({'width' :biggestRow});
-			me.find(".collage-row:last").css({'margin':'0'});
+			$(this).find(".collage-row:last").css({'margin':'0'});
 			
 		} else { //If row does not exist...
 			
-			me.calcSubWidth();
+			$(this).calcSubWidth();
 			//Set Width
 			sub.css({'width' : rowWidth});
 			
 		}
-		sub.show();
 	}
 	
 	function megaHoverOut(){ 
-		var me = $(this);
-		me.find(".sub").stop().fadeTo(100, 0, function() {
-			$(this).hide(); 
-	    });
+	    var me = $(this);
+	    me.removeClass('active');
+        me.find(".sub").stop().fadeTo(100, 0, function() {
+		  $(this).hide(); 
+	  });
 	}
-  
-    $("ul#portal-megamenu li .sub").css({'opacity':'0'});
-	// Create one delayedTask object for hover-in (display the menu)
-	var taskOver = new $.delayedTask();
-	
-	$('ul#portal-megamenu li.top-level').hover(function(event) {
-	        $(this).addClass('active');
-			taskOver.delay(400, megaHoverOver, this, [event]);
-	}, function(event) {
-	        $(this).removeClass('active');
-			// Create one delayedTask object for hover-out in every menu-item
-			var taskOut = new $.delayedTask();
-			taskOut.delay(400, megaHoverOut, this, [event]);
-	}).find('a').click(function(event) {
-	    if($(this).closest('li').find('.sub').length>0) {
-	        event.preventDefault();
-	        // Fire hover
-			taskOver.delay(0, megaHoverOver, this, [event]);
-	    }
-	});
-  
+ 
+ 
+	var config = {    
+		 sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)    
+		 interval: 100, // number = milliseconds for onMouseOver polling interval    
+		 over: megaHoverOver, // function = onMouseOver callback (REQUIRED)    
+		 timeout: 300, // number = milliseconds delay before onMouseOut    
+		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)    
+	};
+ 
+	$("ul#portal-megamenu li .sub").css({'opacity':'0'});
+	// Bind over/out and click events of li.top-level
+	$("ul#portal-megamenu li.top-level").hoverIntent(config).click(megaHoverOver).
+	    // and Bind click event of their links
+	    find('a').click(function(event) {
+	        if($(this).closest('li').find('.sub').length>0) {
+	            event.preventDefault();
+	        }
+	    });
+ 
+ 
+ 
 });
