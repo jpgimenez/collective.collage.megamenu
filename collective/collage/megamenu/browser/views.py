@@ -85,20 +85,37 @@ class MenuRenderer(BrowserView):
         for content in contents:
             item = {}
             item['object'] = content
-            item['with_menu'] = content.meta_type == 'Collage'
+            is_collage = content.meta_type == 'Collage'
+            if is_collage:
+                collage = content.getObject()
+                
+            item['with_menu'] = is_collage
             item['title'] = content.Title
             item['description'] = content.Description
             if content.meta_type == 'ATLink':
-                item['url'] = '%s%s' % (self.portal_url, content.getRemoteUrl)
+                # For ATLinks, get the link
+                remoteUrl = content.getRemoteUrl
+                if remoteUrl[0] == '/':
+                    item['url'] = '%s%s' % (self.portal_url, remoteUrl)
+                else:
+                    item['url'] = remoteUrl
             else:
+                # For other contents, get its url
                 item['url'] = content.getURL()
+                if is_collage:
+                    # Bug if it's a Collage, try to get its first related item
+                    related = collage.getRelatedItems()
+                    if len(related)>0:
+                        item['url'] = related[0].absolute_url();
 
-            if item['with_menu']:
+            if is_collage:
                 item['class'] = 'menu-dropdown'
-                item['dropdown'] = content.getObject().restrictedTraverse('@@renderer')()
+                item['dropdown'] = collage.restrictedTraverse('@@renderer')()
+                item['deferred'] = '%s%s' % (content.getURL(), '/@@renderer')
             else:
                 item['class'] = ''
                 item['dropdown'] = None
+                item['deferred'] = ''
                 
             items.append(item)
 

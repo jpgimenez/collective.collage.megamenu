@@ -15,9 +15,17 @@
             </span>
         </a>
 
+        <tal:dropdown condition="item/with_menu">
         <div class="sub" 
-            tal:condition="item/with_menu"
+            tal:condition="not:item/deferred"
             tal:content="structure item/dropdown" />
+
+        <div class="sub" 
+            tal:condition="item/deferred">
+            <a href="" rel="deferred" tal:attributes="href string:${item/deferred}">Loading data, please wait...</a>
+        </div>
+       
+        </tal:dropdown>
     </li>
     
 </ul>

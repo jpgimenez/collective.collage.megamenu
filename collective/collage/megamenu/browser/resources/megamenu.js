@@ -31,17 +31,30 @@ $(document).ready(function() {
 					biggestRow = rowWidth;
 				}
 			});
-			//Set width
+            rows.each(function() {
+                var columns = $(this).find('ul');
+                columns.css('width', biggestRow/columns.length);
+            });
+			//Set width adding 15 + 15 px (left and right padding)
+            biggestRow += 30;
 			sub.css({'width' :biggestRow});
 			$(this).find(".collage-row:last").css({'margin':'0'});
 			
 		} else { //If row does not exist...
 			
-			$(this).calcSubWidth();
+			//$(this).calcSubWidth();
 			//Set Width
-			sub.css({'width' : rowWidth});
+			//sub.css({'width' : rowWidth});
 			
 		}
+        var wWidth = $(window).width();
+        sub.css('left', 0);
+        var difWidth = wWidth-(sub.offset().left+biggestRow+19+20); //19px = scrollbar + 20px=padding
+        if(difWidth<0) {
+                sub.css('left', difWidth);
+        } else {
+                sub.css('left', 0);
+        }
 	}
 	
 	function megaHoverOut(){ 
@@ -61,9 +74,10 @@ $(document).ready(function() {
 		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)    
 	};
  
-	$("ul#portal-megamenu li .sub").css({'opacity':'0'});
+    var megamenu = $('ul#portal-megamenu');
+	megamenu.find('li .sub').css({'opacity':'0'});
 	// Bind over/out and click events of li.top-level
-	$("ul#portal-megamenu li.top-level").hoverIntent(config).click(megaHoverOver).
+	megamenu.find('li.top-level').hoverIntent(config).click(megaHoverOver).
 	    // and Bind click event of their links
 	    find('a').click(function(event) {
 	        if($(this).closest('li').find('.sub').length>0) {
@@ -71,6 +85,9 @@ $(document).ready(function() {
 	        }
 	    });
  
+    megamenu.find('a[rel=deferred]').each(function() {
+        $(this).parent().load(this.href);
+    });
  
  
 });

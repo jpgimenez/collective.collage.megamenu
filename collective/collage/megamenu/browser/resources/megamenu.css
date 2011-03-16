@@ -37,18 +37,16 @@
     background: #205c90;
     color: white;
 }
-
-
  
 #portal-megamenu li.top-level .sub {
 	position: absolute;	
 	top: 50px; 
 	left: 0;
-	min-width: 600px;
+	/*min-width: 600px;*/
 	background: white;
-	padding: 10% 10%;
+	padding: 15px;
 	float: left;
-	border: #ddd 4px solid;
+	border: #205c90 4px solid;
 	/*--Bottom right rounded corner--*/
 	-moz-border-radius-bottomright: 5px;
 	-khtml-border-radius-bottomright: 5px;
@@ -63,18 +61,19 @@
     clear: both; 
     float: left; 
     width: 100%; 
-    margin: 0 auto 2%;
+    margin: 0 auto 10px;
 }
 
 #portal-megamenu li .sub ul {
 	list-style: none;
-	margin: 0 2% 2% 0; 
+	margin: 0 10px 10px 0; 
 	padding: 0;
 	float: left;
+        width: 100%;
 }
 #portal-megamenu .sub ul li {
 	width: 100%;
-	color: #205c90;
+	color: #76797c; /*#205c90;*/
 }
 #portal-megamenu .sub ul li span {
 	padding: 0;  margin: 0;
@@ -82,16 +81,18 @@
 	font-weight: bold;
 	display: block;
 	width: 100%;
+    white-space: nowrap;
 }
 #portal-megamenu .sub ul li a {
 	float: none; 
 	text-indent: 0; /*--Reset text indent--*/
 	height: auto;
-	padding: 2% 0 2% 4%;
+	padding: 5px 0 5px 10px;
 	display: block;
 	text-decoration: none;
 	color: #205c90;
 	width: 96%;
+    white-space: nowrap;
 }
 
 #portal-megamenu .sub ul li a.collage-megamenu-highlight {
@@ -106,7 +107,7 @@
 /* Copied from collage.css */
 
 /* column configurations */
-
+/*
 #portal-megamenu .one-column .block_1 {
     width: 98%;
 }
@@ -131,7 +132,7 @@
 #portal-megamenu .block_6 {
   padding-left: 1%;
 }
-
+*/
 
 /* content layout */
 #portal-megamenu ul li .megamenu-title {
