@@ -4,10 +4,11 @@
     i18n_domain="collective.collage.megamenu">
 
 
-    <!-- Collage alternative renderers -->
+  <include file="collage.zcml" />
+
   <browser:page
      name="menu-renderer"
-     for="Products.ATContentTypes.interfaces.IATFolder"
+     for="collective.collage.megamenu.interfaces.IMegamenuEnabled"
      permission="zope.Public"
      class="collective.collage.megamenu.browser.views.MenuRenderer"
      template="templates/menu_renderer.pt"
@@ -15,73 +16,42 @@
      />
 
   <browser:page
-     name="menu-renderer"
-     for="Products.Collage.interfaces.ICollageRow"
-     permission="zope.Public"
-     class="Products.Collage.browser.renderer.SimpleContainerRenderer"
-     template="templates/row_renderer.pt"
+     name="menu-enable"
+     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     permission="cmf.ManagePortal"
+     class="collective.collage.megamenu.browser.views.EnablerView"
+     attribute="enable"
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
 
   <browser:page
-     name="menu-renderer"
-     for="Products.Collage.interfaces.ICollageColumn"
+     name="menu-disable"
+     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     permission="cmf.ManagePortal"
+     class="collective.collage.megamenu.browser.views.EnablerView"
+     attribute="disable"
+     layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
+     />
+
+  <browser:page
+     name="menu-is-enabled"
+     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
      permission="zope.Public"
-     class="Products.Collage.browser.renderer.SimpleContainerRenderer"
-     template="templates/column_renderer.pt"
+     class="collective.collage.megamenu.browser.views.EnablerView"
+     attribute="is_enabled"
+     layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
+     />
+
+  <browser:page
+     name="menu-is-disabled"
+     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     permission="zope.Public"
+     class="collective.collage.megamenu.browser.views.EnablerView"
+     attribute="is_disabled"
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
 
 
-
-    <!-- Menu item / column / row -->
-	<browser:page
-	   name="menu"
-	   for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
-	   class="collective.collage.megamenu.browser.views.BasicMenuLayout"
-	   permission="zope.Public"
-	   template="templates/menu_item.pt"
-	   layer="Products.Collage.interfaces.ICollageBrowserLayer"
-   /> 
-   
-	<browser:page
-	   name="menu"
-       for="Products.Collage.interfaces.ICollageColumn"
-	   class="Products.Collage.browser.views.BaseView"
-	   permission="zope.Public"
-	   template="templates/menu_column.pt"
-	   layer="Products.Collage.interfaces.ICollageBrowserLayer"
-   /> 
-   
-	<browser:page
-	   name="menu"
-       for="Products.Collage.interfaces.ICollageRow"
-	   class="collective.collage.megamenu.browser.views.MenuRowLayout"
-	   permission="zope.Public"
-	   template="templates/menu_row.pt"
-	   layer="Products.Collage.interfaces.ICollageBrowserLayer"
-   /> 
-
-	<!-- Collage skins -->
-   <utility
-     name="collage-megamenu-title"
-     provides="collective.collage.megamenu.browser.views.IMenuLayoutSkin"
-     factory="collective.collage.megamenu.browser.views.TitleSkin"
-     />
-
-
-   <utility
-     name="collage-megamenu-link"
-     provides="collective.collage.megamenu.browser.views.IMenuLayoutSkin"
-     factory="collective.collage.megamenu.browser.views.LinkSkin"
-     />
-     
-   <utility
-     name="collage-megamenu-highlight"
-     provides="collective.collage.megamenu.browser.views.IMenuLayoutSkin"
-     factory="collective.collage.megamenu.browser.views.HighlightedLinkSkin"
-     />
-     
   <!-- Resources registration -->
   
   <browser:resourceDirectory
@@ -100,12 +70,4 @@
         layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
         />
 
-  <!-- additional layouts -->
-	<browser:page
-	   name="intro"
-	   for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
-	   permission="zope.Public"
-	   template="templates/menu_content.pt"
-	   layer="Products.Collage.interfaces.ICollageBrowserLayer"
-   /> 
 </configure>

@@ -49,6 +49,20 @@ $(document).ready(function() {
         };
     })(jQuery);
 	
+	String.prototype.startsWith = function(text) {
+	    return this.substring(0, text.length)==text;
+	};
+	
+    function applySelected() {
+        // Get all links and select their parent li-elements 
+        // if href matches current URL beginning
+        var url = document.location.href;
+        $('#portal-megamenu .sub a').each(function() {
+            if(url.startsWith(this.href)) {
+                $(this).closest('li').addClass('selected');
+            }
+        });
+    }
  
 	function megaHoverOver(){
 		var me = $(this);
@@ -84,10 +98,12 @@ $(document).ready(function() {
 		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)	
 	};
  
-	var megamenu = $('ul#portal-megamenu');
+	var megamenu = $('#portal-megamenu');
 	megamenu.find('li .sub').css({'opacity':'0'});
 	// Bind over/out and click events of li.top-level
-	megamenu.find('li.top-level').hoverIntent(config).click(megaHoverOver).
+	megamenu.find('li.top-level').
+	    hoverIntent(config).
+	    click(megaHoverOver).
 		// and Bind click event of their links
 		find('a').click(function(event) {
 			if($(this).closest('li').find('.sub').length>0) {
@@ -102,12 +118,14 @@ $(document).ready(function() {
 				$(this).parent().load(this.href, function(response, status, request) {
 				// Reset width
 				$(this).resetWidth();
+				applySelected();
 			});
 		});
  	} else {
  		// If there aren't deferred dropdowns, just reset their widths
  		megamenu.find('.sub').each(function() {
  		    $(this).resetWidth();
+ 		    applySelected();
  		});
 	}
  

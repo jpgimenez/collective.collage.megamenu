@@ -10,6 +10,12 @@
   <includeDependencies package="." />
   
   <include package=".browser" />
+
+  <!-- Megamenu support for ATFolders -->
+  <class class="Products.ATContentTypes.content.folder.ATFolder">
+     <implements interface="collective.collage.megamenu.interfaces.IMegamenuCapable" />
+  </class>
+    
   
   <genericsetup:registerProfile
       name="default"

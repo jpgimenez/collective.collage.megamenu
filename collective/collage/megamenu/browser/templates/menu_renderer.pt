@@ -1,7 +1,8 @@
 <ul id="portal-megamenu" class="megamenu"
     tal:define="items view/getItems">
 
-    <li tal:repeat="item items" class="top-level">
+    <tal:items repeat="item items">
+    <li tal:attributes="class string:top-level ${item/selected_class}">
         <a class="menu-item" href="" 
             tal:attributes="href item/url; 
                             title item/description;
@@ -27,5 +28,5 @@
        
         </tal:dropdown>
     </li>
-    
+    </tal:items>
 </ul>
