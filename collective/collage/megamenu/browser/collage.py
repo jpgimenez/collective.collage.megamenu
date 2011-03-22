@@ -73,11 +73,14 @@ class MenuRowLayout(RowView):
  
  # Skins
 class NoLinesSkin(object):
-    title = _(u"No separator")
+    title = _(u"No line")
     
 class HLinesSkin(object):
-    title = _(u"Horizontal separator")
+    title = _(u"Bottom line")
 
 class VLinesSkin(object):
-    title = _(u"Vertical separator")
+    title = _(u"Vertical lines")
+    
+class HVLinesSkin(object):
+    title = _(u"Both lines")
 

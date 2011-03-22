@@ -122,6 +122,12 @@
      factory="collective.collage.megamenu.browser.collage.VLinesSkin"
      />
      
+   <utility
+     name="collage-megamenu-hvlines"
+     provides="collective.collage.megamenu.browser.collage.IMenuRowLayoutSkin"
+     factory="collective.collage.megamenu.browser.collage.HVLinesSkin"
+     />
+     
 
   <!-- additional layouts -->
 	<browser:page

@@ -109,9 +109,28 @@
     margin: 0 auto 10px;
 }
 
+#portal-megamenu li .collage-megamenu-hlines,
+#portal-megamenu li .collage-megamenu-hvlines {
+    border-bottom: 1px solid #ddd;
+}
+
 #portal-megamenu .sub ul {
 	margin: 0 10px 10px 0; 
     padding: 0;
+}
+
+#portal-megamenu .sub .collage-megamenu-vlines>ul, 
+#portal-megamenu .sub .collage-megamenu-hvlines>ul {
+    border-left: 1px solid #ddd;
+    margin-left: -10px;
+    padding-left: 10px;
+}
+
+#portal-megamenu .sub .collage-megamenu-vlines>ul.collage-first-object, 
+#portal-megamenu .sub .collage-megamenu-hvlines>ul.collage-first-object {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 #portal-megamenu .sub ul li {
