@@ -10,7 +10,7 @@
      name="menu-renderer"
      for="collective.collage.megamenu.interfaces.IMegamenuEnabled"
      permission="zope.Public"
-     class="collective.collage.megamenu.browser.views.MenuRenderer"
+     class="collective.collage.megamenu.browser.renderer.MenuRenderer"
      template="templates/menu_renderer.pt"
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
@@ -51,6 +51,15 @@
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
 
+  <browser:page
+     name="menu-set-current"
+     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     permission="zope.Public"
+     class="collective.collage.megamenu.browser.views.EnablerView"
+     attribute="set_as_current"
+     layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
+     />
+     
   <browser:page
      name="megamenu-settings"
      for="*"

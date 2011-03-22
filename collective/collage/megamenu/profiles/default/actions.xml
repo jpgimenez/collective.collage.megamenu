@@ -16,6 +16,7 @@
    </property>
    <property name="visible">True</property>
   </object>
+  
   <object name="megamenu-disable" meta_type="CMF Action"
      i18n:domain="collective.collage.megamenu">
    <property name="title" i18n:translate="">Disable Megamenu</property>
@@ -30,6 +31,22 @@
    </property>
    <property name="visible">True</property>
   </object>
+  
+  <object name="megamenu-setdefault" meta_type="CMF Action"
+     i18n:domain="collective.collage.megamenu">
+   <property name="title" i18n:translate="">Current Megamenu</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@menu-set-current</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">object/@@menu-is-enabled|nothing</property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  
  </object>
 </object>
 
