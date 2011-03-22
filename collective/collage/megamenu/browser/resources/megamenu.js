@@ -57,7 +57,7 @@ $(document).ready(function() {
         // Get all links and select their parent li-elements 
         // if href matches current URL beginning
         var url = document.location.href;
-        $('#portal-megamenu .sub a').each(function() {
+        $('#portal-megamenu li.menu_view_menu a').each(function() {
             if(url.startsWith(this.href)) {
                 $(this).closest('li').addClass('selected');
             }

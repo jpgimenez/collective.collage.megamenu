@@ -1,14 +1,17 @@
 from Acquisition import aq_inner
 
 from zope.interface import noLongerProvides, alsoProvides
-from zope.component import getMultiAdapter, queryMultiAdapter
+from zope.component import getMultiAdapter, queryUtility
 
 from Products.Five import BrowserView
 
 from Products.Collage.interfaces import ICollageEditLayer
 from Products.statusmessages.interfaces import IStatusMessage
+from plone.registry.interfaces import IRegistry
 
-from collective.collage.megamenu.interfaces import IMegamenuCapable, IMegamenuEnabled
+from Products.CMFCore.utils import getToolByName
+
+from collective.collage.megamenu.interfaces import IMegamenuCapable, IMegamenuEnabled, IMegamenuSettings
 from collective.collage.megamenu import message_factory as _
 
 from plone.memoize.instance import memoize
@@ -22,8 +25,10 @@ class MenuRenderer(BrowserView):
         self.request = request
         portal_state = getMultiAdapter((context, request), name="plone_portal_state")
         self.portal_url = portal_state.portal_url()
+        self.settings = getMultiAdapter((context, request), name="megamenu-settings")
 
     def getItems(self):
+        ajax = self.settings.ajax
         # TODO: Restrict items?
         contents = self.context.getFolderContents()
         
@@ -42,8 +47,8 @@ class MenuRenderer(BrowserView):
                 collage = content.getObject()
                 
             item['with_menu'] = is_collage
-            item['title'] = content.Title
-            item['description'] = content.Description
+            item['title'] = content.Title or ''
+            item['description'] = content.Description or ''
             if content.meta_type == 'ATLink':
                 # For ATLinks, get the link
                 remoteUrl = content.getRemoteUrl
@@ -72,8 +77,12 @@ class MenuRenderer(BrowserView):
                 
             if is_collage:
                 item['class'] = 'menu-dropdown'
-                item['dropdown'] = collage.restrictedTraverse('@@renderer')()
-                item['deferred'] = '%s%s' % (content.getURL(), '/@@renderer')
+                if not ajax:
+                    item['dropdown'] = collage.restrictedTraverse('@@renderer')()
+                    item['deferred'] = ''
+                else:
+                    item['dropdown'] = ''
+                    item['deferred'] = '%s%s' % (content.getURL(), '/@@renderer')
             else:
                 item['class'] = ''
                 item['dropdown'] = None
@@ -131,3 +140,25 @@ class EnablerView(BrowserView):
             IStatusMessage(request).addStatusMessage(message)
 
         return request.response.redirect(request.HTTP_REFERER)
+
+## Configuration options View
+class SettingsView(BrowserView):
+
+    def __init__(self, context, request):
+        self.context = aq_inner(context)
+        self.request = request
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IMegamenuSettings)
+        self.enabled = settings.enabled and settings.megamenu_folder
+        self.menufolder = None
+        if self.enabled:
+            catalog = getToolByName(self.context, 'portal_catalog')
+            brain = catalog(UID=settings.megamenu_folder)
+            if len(brain)>0:
+                try:
+                    self.menufolder = brain[0].getObject()
+                except:
+                    pass
+
+        self.ajax = settings.deferred_rendering
+

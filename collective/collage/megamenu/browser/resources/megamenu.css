@@ -1,5 +1,7 @@
-/* To prevent margin-left in collage compose view */
+/* Menu rendering */
+
 #collage ul.megamenu {
+    /* To prevent margin-left in collage compose view */
     margin-left: 0;
     padding-left: 0;
 }
@@ -11,8 +13,6 @@
 	float:left;
 	width: 100%;
 	list-style: none;
-	font-size: 80%;
-	background: #ddd;
 }
 #portal-megamenu li.top-level {
 	float: left;
@@ -22,6 +22,53 @@
 
 #portal-megamenu li a.menu-item {
 	float: left; 
+}
+ 
+#portal-megamenu li.top-level .sub {
+	position: absolute;	
+	left: 0;
+	float: left;
+	display: none;
+}
+#portal-megamenu li .collage-row {
+    clear: both; 
+    float: left; 
+    width: 100%; 
+}
+
+#portal-megamenu .sub ul {
+	list-style: none;
+	float: left;
+    width: 100%;
+}
+
+
+#portal-megamenu .sub ul li {
+	width: 100%;
+}
+
+#portal-megamenu .sub ul li span {
+	display: block;
+    white-space: nowrap;
+}
+
+#portal-megamenu .sub ul li a {
+	float: none; 
+	height: auto;
+	display: block;
+    white-space: nowrap;
+}
+
+/* End Menu rendering */
+
+/* Menu styling */
+
+#portal-megamenu {
+	font-size: 80%;
+	background: #ddd;
+}
+
+#portal-megamenu li a.menu-item {
 	height: 41px;
 	padding: 0.5em 1em 0em;
 	background: #ddd;
@@ -37,15 +84,11 @@
     background: #205c90;
     color: white;
 }
- 
+
 #portal-megamenu li.top-level .sub {
-	position: absolute;	
 	top: 47px; 
-	left: 0;
-	/*min-width: 600px;*/
 	background: white;
 	padding: 15px;
-	float: left;
 	border: #205c90 4px solid;
 	/*--Bottom right rounded corner--*/
 	-moz-border-radius-bottomright: 5px;
@@ -55,54 +98,34 @@
 	-moz-border-radius-bottomleft: 5px;
 	-khtml-border-radius-bottomleft: 5px;
 	-webkit-border-bottom-left-radius: 5px;
-	display: none;
 }
+
 #portal-megamenu li .collage-row {
-    clear: both; 
-    float: left; 
-    width: 100%; 
     margin: 0 auto 10px;
 }
 
 #portal-megamenu .sub ul {
-	list-style: none;
 	margin: 0 10px 10px 0; 
-/*	padding: 0 0 0 10px;*/
     padding: 0;
-	float: left;
-    width: 100%;
-/*    border-left: 1px solid #ddd;*/
 }
-
-/*
-#portal-megamenu .sub ul.collage-first-object {
-    padding-left: 0;
-    border-left: 0;
-}
-*/
 
 #portal-megamenu .sub ul li {
-	width: 100%;
-	color: #76797c; /*#205c90;*/
+	color: #76797c;
 }
+
 #portal-megamenu .sub ul li span {
-	padding: 0;  margin: 0;
+	padding: 0;  
+	margin: 0;
 	font-size: 1.3em;
 	font-weight: bold;
-	display: block;
 	width: 100%;
-    white-space: nowrap;
 }
+
 #portal-megamenu .sub ul li a {
-	float: none; 
-	text-indent: 0; /*--Reset text indent--*/
-	height: auto;
 	padding: 5px 0 5px 10px;
-	display: block;
 	text-decoration: none;
 	color: #205c90;
 	width: 96%;
-    white-space: nowrap;
 }
 
 #portal-megamenu .sub ul li a.collage-megamenu-highlight {
@@ -114,39 +137,9 @@
 	background: #205c90;
 }
 
+/* End Menu styling */
 
-
-/* Copied from collage.css */
-
-/* column configurations */
-/*
-#portal-megamenu .one-column .block_1 {
-    width: 98%;
-}
-
-#portal-megamenu .two-columns-equal .block_1,
-#portal-megamenu .two-columns-equal .block_2 {
-  width:48%;
-}
-
-#portal-megamenu .three-columns-equal .block_1,
-#portal-megamenu .three-columns-equal .block_2,
-#portal-megamenu .three-columns-equal .block_3 {
-    width:31.2%;
-}
-
-
-#portal-megamenu .block_2,
-#portal-megamenu .block_4,
-#portal-megamenu .block_3,
-#portal-megamenu .block_4,
-#portal-megamenu .block_5,
-#portal-megamenu .block_6 {
-  padding-left: 1%;
-}
-*/
-
-/* content layout */
+/* Content layout */
 #portal-megamenu ul li .megamenu-title {
     margin-bottom: 1em;
 }
@@ -167,3 +160,4 @@
     color: black;
 }
 
+/* End Content layout */

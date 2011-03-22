@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
     i18n_domain="collective.collage.megamenu">
 
   <five:registerPackage package="." initialize=".initialize" />
@@ -16,6 +17,19 @@
      <implements interface="collective.collage.megamenu.interfaces.IMegamenuCapable" />
   </class>
     
+  <include package="collective.monkeypatcher" file="meta.zcml" />
+  <monkey:patch
+      description="Special icon for Megamenu enabled folders"
+      class="Products.ATContentTypes.content.folder.ATFolder"
+      original="getIcon"
+      replacement=".patch.getIcon"
+      />
+
+  <utility
+      component="collective.collage.megamenu.vocabulary.MegamenuesVocabularyFactory"
+      name="collective.collage.megamenues"
+      />
+
   
   <genericsetup:registerProfile
       name="default"

@@ -27,6 +27,9 @@ setup(name='collective.collage.megamenu',
           # -*- Extra requirements: -*-
           'Products.Collage',
           'plone.browserlayer',
+          'plone.app.registry',
+          'collective.monkeypatcher',
+          'z3c.form',
       ],
       entry_points="""
       # -*- Entry points: -*-

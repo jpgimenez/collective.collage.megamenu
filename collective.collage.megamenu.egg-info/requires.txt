@@ -1,3 +1,4 @@
 setuptools
 Products.Collage
 plone.browserlayer
+plone.app.registry

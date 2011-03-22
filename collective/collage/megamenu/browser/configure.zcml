@@ -51,6 +51,14 @@
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
 
+  <browser:page
+     name="megamenu-settings"
+     for="*"
+     permission="zope.Public"
+     class="collective.collage.megamenu.browser.views.SettingsView"
+     layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
+     />
+
 
   <!-- Resources registration -->
   
@@ -69,5 +77,15 @@
         permission="zope2.View"
         layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
         />
+
+  <!-- Control panel related directives -->
+  
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="megamenu-controlpanel"
+      class="collective.collage.megamenu.browser.controlpanel.MegamenuSettingsFormWrapper"
+      permission="cmf.ManagePortal" 
+      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
+      />
 
 </configure>

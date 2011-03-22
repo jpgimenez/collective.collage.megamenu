@@ -12,13 +12,13 @@
             </tal:title>
             
             <span class="arrowDownAlternative" tal:condition="item/with_menu">
-                &#9660
+                &#9660;
             </span>
         </a>
 
         <tal:dropdown condition="item/with_menu">
         <div class="sub" 
-            tal:condition="not:item/deferred"
+            tal:condition="not:item/deferred|nothing"
             tal:content="structure item/dropdown" />
 
         <div class="sub" 

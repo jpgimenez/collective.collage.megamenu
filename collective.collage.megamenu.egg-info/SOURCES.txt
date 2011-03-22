@@ -16,10 +16,12 @@ collective/collage/megamenu/interfaces.py
 collective/collage/megamenu/tests.py
 collective/collage/megamenu/version.txt
 collective/collage/megamenu/browser/__init__.py
+collective/collage/megamenu/browser/collage.py
 collective/collage/megamenu/browser/configure.zcml
 collective/collage/megamenu/browser/viewlet.py
 collective/collage/megamenu/browser/views.py
 collective/collage/megamenu/browser/resources/jquery.delayedtask.js
+collective/collage/megamenu/browser/resources/jquery.hoverIntent.minified.js
 collective/collage/megamenu/browser/resources/megamenu.css
 collective/collage/megamenu/browser/resources/megamenu.js
 collective/collage/megamenu/browser/templates/collage_renderer.pt
