@@ -2,7 +2,8 @@
     tal:define="items view/getItems">
 
     <tal:items repeat="item items">
-    <li tal:attributes="class string:top-level ${item/selected_class}">
+    <li tal:attributes="class string:top-level ${item/selected_class};
+                        id string:mm-tl-${item/id}">
         <a class="menu-item" href="" 
             tal:attributes="href item/url; 
                             title item/description;

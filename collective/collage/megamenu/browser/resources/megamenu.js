@@ -8,7 +8,7 @@ $(document).ready(function() {
 			// Should receive a .collage-row element
 			var rowWidth = 0;
 			//Calculate row
-			$(this).find("ul").each(function() {					
+			$(this).find(">ul").each(function() {					
 				rowWidth += $(this).width(); 
 			});	
 			return rowWidth;
@@ -17,15 +17,24 @@ $(document).ready(function() {
 
 
 	(function($) {
-		jQuery.fn.resetWidth = function() {
+		jQuery.fn.resetWidth = function(nesting) {
 			// Should receive a .sub element
 			// Show the element (opacity = 0) to set widths properly
-			this.css('opacity', 0).show();
-			var rows = this.find('.collage-row');
+			if(!nesting) {
+    			this.css('opacity', 0).show();
+    		}
+			// find all direct-child rows (there could be nested menues)
+			var rows = this.find('>.collage-row');
 			var biggestRow = 0;	
 			//Calculate each row
-			rows.each(function() {							   
-				var rowWidth = $(this).calcSubWidth();
+			rows.each(function() {
+			    // If there are nested menues, reset their widths before
+			    var me = $(this);
+			    var nested = me.find('>ul>li.menu_view_nested-menu');
+			    nested.each(function() {
+			        $(this).resetWidth(true);
+			    });
+				var rowWidth = me.calcSubWidth();
 				//Find biggest row
 				if(rowWidth > biggestRow) {
 					biggestRow = rowWidth;
@@ -33,7 +42,7 @@ $(document).ready(function() {
 			});
 			var maxColCount = 0;
 			rows.each(function() {
-				var columns = $(this).find('ul');
+				var columns = $(this).find('>ul');
 				var count = columns.length;
 				columns.css('width', biggestRow/count);
 				if(maxColCount<count) {
@@ -42,10 +51,11 @@ $(document).ready(function() {
 			});
 			
 			biggestRow += 30; //Set width adding 15 + 15 px (left and right padding)
-//			biggestRow += (10*maxColCount-1)  // adding 10px pear every non-first column padding
 			this.css({'width' :biggestRow});
-			this.find(".collage-row:last").css({'margin':'0'});
-			this.hide();
+			this.find(">.collage-row:last").css({'margin':'0'});
+			if(!nesting) {
+    			this.hide();
+			}
         };
     })(jQuery);
 	

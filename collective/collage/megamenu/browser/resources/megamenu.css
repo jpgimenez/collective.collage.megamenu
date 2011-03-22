@@ -36,6 +36,11 @@
     width: 100%; 
 }
 
+/* Reset width to auto for nested rows */
+#portal-megamenu li .menu_view_nested-menu .collage-row {
+    width: auto; 
+}
+
 #portal-megamenu .sub ul {
 	list-style: none;
 	float: left;

@@ -5,9 +5,12 @@ from Products.Archetypes.BaseContent import BaseContent
 def getIcon(self, relative_to_portal=0):
     utool = getToolByName(self, 'portal_url')
     portal_url = utool()
+    icon = '++resource++collective.collage.megamenu/megamenu.gif'
     
     if IMegamenuEnabled.providedBy(self):
-        if not relative_to_portal:
-            return '%s++resource++collective.collage.megamenu/megamenu.gif' % (relative_to_portal and '' or portal_url + '/')
+        if relative_to_portal==1:
+            return icon
+        else:
+            return '%s/%s' % (portal_url, icon)
     else:
-        return BaseContent.getIcon(self, relative_to_portal)
+        return self._old_getIcon(relative_to_portal)

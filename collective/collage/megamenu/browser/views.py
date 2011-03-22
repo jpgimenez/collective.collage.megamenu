@@ -41,6 +41,7 @@ class MenuRenderer(BrowserView):
         items = []
         for content in contents:
             item = {}
+            item['id'] = content.getId
             item['object'] = content
             is_collage = content.meta_type == 'Collage'
             if is_collage:
@@ -78,11 +79,11 @@ class MenuRenderer(BrowserView):
             if is_collage:
                 item['class'] = 'menu-dropdown'
                 if not ajax:
-                    item['dropdown'] = collage.restrictedTraverse('@@renderer')()
+                    item['dropdown'] = collage.restrictedTraverse('@@menu-renderer')()
                     item['deferred'] = ''
                 else:
                     item['dropdown'] = ''
-                    item['deferred'] = '%s%s' % (content.getURL(), '/@@renderer')
+                    item['deferred'] = '%s%s' % (content.getURL(), '/@@menu-renderer')
             else:
                 item['class'] = ''
                 item['dropdown'] = None

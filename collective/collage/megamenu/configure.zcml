@@ -22,7 +22,16 @@
       description="Special icon for Megamenu enabled folders"
       class="Products.ATContentTypes.content.folder.ATFolder"
       original="getIcon"
-      replacement=".patch.getIcon"
+      preserveOriginal="true"
+      replacement="collective.collage.megamenu.patch.getIcon"
+      />
+      
+  <monkey:patch
+      description="Special icon for Megamenu enabled folders"
+      class="Products.ATContentTypes.content.folder.ATFolder"
+      original="icon"
+      preserveOriginal="true"
+      replacement="collective.collage.megamenu.patch.getIcon"
       />
 
   <utility

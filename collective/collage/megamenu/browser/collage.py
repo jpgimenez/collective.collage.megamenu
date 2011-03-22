@@ -7,8 +7,11 @@ from Products.Collage.browser.views import BaseView, RowView
 from Products.Collage.interfaces import ICollageEditLayer
 from Products.ATContentTypes.interfaces import IATLink
 
+from collective.collage.megamenu import message_factory as _
 from plone.memoize.instance import memoize
 
+
+## Menu item
 
 class IMenuLayoutSkin(Interface):
     """Interface for skinable views."""
@@ -17,7 +20,7 @@ class IMenuLayoutSkin(Interface):
 class BasicMenuLayout(BaseView):
     skinInterfaces = (IMenuLayoutSkin, )
     
-    title = "Menu"
+    title = _(u"Menu")
     
     @memoize
     def object(self):
@@ -41,22 +44,40 @@ class BasicMenuLayout(BaseView):
             # Otherwise, return object's url
             return object.absolute_url()
     
-### Skins
-
+# Skins
 class TitleSkin(object):
-    title = "Title"
+    title = _(u"Title")
 
 class LinkSkin(object):
-    title = "Link"
+    title = _(u"Link")
 
 class HighlightedLinkSkin(object):
-    title = "Highlight"
+    title = _(u"Highlight")
 
 ### MenuRow
 
+class IMenuRowLayoutSkin(Interface):
+    """Interface for skinable views."""
+    pass
+
 class MenuRowLayout(RowView):
     """ Special RowView """
+    
+    skinInterfaces = (IMenuRowLayoutSkin, )
+    
+    title = _(u"Menu")
 
     def inComposeView(self):
         return ICollageEditLayer.providedBy(self.request)
  
+ 
+ # Skins
+class NoLinesSkin(object):
+    title = _(u"No separator")
+    
+class HLinesSkin(object):
+    title = _(u"Horizontal separator")
+
+class VLinesSkin(object):
+    title = _(u"Vertical separator")
+
