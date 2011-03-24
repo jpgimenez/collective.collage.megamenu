@@ -6,8 +6,6 @@ from Products.Five import BrowserView
 
 from Products.Collage.interfaces import ICollageEditLayer
 
-from plone.memoize.instance import memoize
-
 ### Menu Renderer view
 
 class MenuRenderer(BrowserView):

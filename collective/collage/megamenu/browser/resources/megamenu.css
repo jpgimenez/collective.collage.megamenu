@@ -149,7 +149,7 @@
 	padding: 5px 0 5px 10px;
 	text-decoration: none;
 	color: #205c90;
-	width: 96%;
+	width: 85%;
 }
 
 #portal-megamenu .sub ul li a.collage-megamenu-highlight {
@@ -159,6 +159,10 @@
 #portal-megamenu .sub ul li a:hover {
 	color: #ddd; 
 	background: #205c90;
+}
+
+#portal-megamenu .sub li.selected a {
+    background: #ddd;
 }
 
 /* End Menu styling */
