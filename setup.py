@@ -30,6 +30,7 @@ setup(name='collective.collage.megamenu',
           'plone.app.registry',
           'collective.monkeypatcher',
           'z3c.form',
+          'collective.collage.nested',
       ],
       entry_points="""
       # -*- Entry points: -*-

@@ -40,14 +40,10 @@ $(document).ready(function() {
 					biggestRow = rowWidth;
 				}
 			});
-			var maxColCount = 0;
 			rows.each(function() {
 				var columns = $(this).find('>ul');
 				var count = columns.length;
 				columns.css('width', biggestRow/count);
-				if(maxColCount<count) {
-				    maxColCount = count;
-				}
 			});
 			
 			biggestRow += 30; //Set width adding 15 + 15 px (left and right padding)

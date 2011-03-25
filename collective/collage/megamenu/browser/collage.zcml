@@ -64,6 +64,7 @@
     /> 
    
   <!-- Nested Collage-->
+<!--
   <browser:page
     name="nested"
     for="Products.Collage.interfaces.ICollage"
@@ -72,11 +73,11 @@
     template="templates/nested_collage.pt"
     layer="Products.Collage.interfaces.ICollageBrowserLayer"
     /> 
-   
+  --> 
   <browser:page
     name="nested-menu"
     for="Products.Collage.interfaces.ICollage"
-    class="Products.Collage.browser.collage.CollageView"
+    class="collective.collage.nested.browser.views.NestedCollageView"
     permission="zope.Public"
     template="templates/nested_menu.pt"
     layer="Products.Collage.interfaces.ICollageBrowserLayer"
