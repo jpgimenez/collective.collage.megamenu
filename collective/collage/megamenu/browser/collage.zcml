@@ -38,7 +38,7 @@
   <!-- Menu item / column / row -->
   <browser:page
     name="menu"
-    for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
+    for="Products.ATContentTypes.interface.IATContentType"
     class="collective.collage.megamenu.browser.collage.BasicMenuLayout"
     permission="zope.Public"
     template="templates/menu_item.pt"
@@ -130,7 +130,7 @@
   <!-- additional layouts -->
   <browser:page
     name="intro"
-    for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
+    for="Products.ATContentTypes.interface.IATContentType"
     permission="zope.Public"
     template="templates/menu_content.pt"
     layer="Products.Collage.interfaces.ICollageBrowserLayer"
