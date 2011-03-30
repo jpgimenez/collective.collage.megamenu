@@ -1,3 +1,4 @@
+from zope.interface import providedBy
 from collective.collage.megamenu.interfaces import IMegamenuEnabled
 from Products.CMFCore.utils import getToolByName
 
@@ -6,7 +7,7 @@ def getIcon(self, relative_to_portal=0):
     portal_url = utool()
     icon = '++resource++collective.collage.megamenu/megamenu.gif'
     
-    if IMegamenuEnabled.providedBy(self):
+    if IMegamenuEnabled in providedBy(self):
         if relative_to_portal==1:
             return icon
         else:

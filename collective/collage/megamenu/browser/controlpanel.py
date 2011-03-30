@@ -20,7 +20,7 @@ class MegamenuSettingsEditForm(controlpanel.RegistryEditForm):
         super(MegamenuSettingsEditForm, self).updateFields()
         self.fields['megamenu_folder'].widgetFactory = RadioFieldWidget
         
-    
+   
 class MegamenuSettingsFormWrapper(layout.FormWrapper):
     """Use this form as the plone.z3cform layout wrapper to get the control
     panel layout.

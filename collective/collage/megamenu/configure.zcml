@@ -16,11 +16,18 @@
   
   <i18n:registerTranslations directory="locales" />
 
+<!--
   <utility
       component="collective.collage.megamenu.vocabulary.MegamenuesVocabularyFactory"
       name="collective.collage.megamenues"
       />
+-->
 
+  <utility
+      provides="zope.schema.interfaces.IVocabularyFactory"
+      component="collective.collage.megamenu.vocabulary.megamenues_vocabulary"
+      name="collective.collage.megamenues"
+      />
   
   <genericsetup:registerProfile
       name="default"

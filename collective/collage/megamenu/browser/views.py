@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 
 from zope.interface import noLongerProvides, alsoProvides
 from zope.component import queryUtility, getMultiAdapter
+from zope.interface import providedBy
 
 from Products.Five import BrowserView
 
@@ -45,14 +46,14 @@ class EnablerView(BrowserView):
 
     @memoize
     def is_capable(self):
-        return IMegamenuCapable.providedBy(self.context)
+        return IMegamenuCapable in providedBy(self.context)
 
     @memoize
     def is_enabled(self):
         globals = self.globals_view
         if globals.isFolderOrFolderDefaultPage():
             folder = globals.getCurrentFolder()
-            return IMegamenuEnabled.providedBy(folder)
+            return IMegamenuEnabled in providedBy(folder)
         else:
             return False
 
@@ -61,7 +62,7 @@ class EnablerView(BrowserView):
         globals = self.globals_view
         if globals.isFolderOrFolderDefaultPage():
             folder = globals.getCurrentFolder()
-            return not IMegamenuEnabled.providedBy(folder)
+            return not IMegamenuEnabled in providedBy(folder)
         else:
             return False
 
@@ -70,7 +71,7 @@ class EnablerView(BrowserView):
 
         if message:
             self.context.reindexObject(idxs=['object_provides', ])
-            IStatusMessage(request).addStatusMessage(message)
+            IStatusMessage(request).addStatusMessage(message, type="info")
 
         return request.response.redirect(request.HTTP_REFERER)
 
@@ -79,7 +80,7 @@ class EnablerView(BrowserView):
         context = self.context
         title = safe_unicode(context.Title())
         message = _(u"Press 'Save' button to select '${title}' as Megamenu folder", mapping={'title': title})
-        IStatusMessage(request).addStatusMessage(message)
+        IStatusMessage(request).addStatusMessage(message, type="info")
         utool = getToolByName(context, 'portal_url')
         portal_url = utool.getPortalObject().absolute_url()
         uid = context.UID()

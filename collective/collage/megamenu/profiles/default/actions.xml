@@ -8,7 +8,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@menu-enable</property>
-   <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr">object/@@menu-is-disabled|nothing</property>
    <property name="permissions">
@@ -23,7 +22,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@menu-disable</property>
-   <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr">object/@@menu-is-enabled|nothing</property>
    <property name="permissions">
@@ -38,7 +36,6 @@
    <property name="description" i18n:translate=""></property>
    <property
       name="url_expr">string:${globals_view/getCurrentObjectUrl}/@@menu-set-current</property>
-   <property name="link_target"></property>
    <property name="icon_expr"></property>
    <property name="available_expr">object/@@menu-is-enabled|nothing</property>
    <property name="permissions">

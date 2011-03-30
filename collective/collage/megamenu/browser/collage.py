@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 
 from zope.interface import Interface
 from zope.component import getMultiAdapter
+from zope.interface import providedBy
 
 from Products.Collage.browser.views import BaseView, RowView
 from Products.Collage.interfaces import ICollageEditLayer
@@ -29,7 +30,7 @@ class BasicMenuLayout(BaseView):
     def url(self):
         object = self.object()
         # If it's a link
-        if IATLink.providedBy(object):
+        if IATLink in providedBy(object):
             remoteUrl = object.getRemoteUrl()
             # If it's a local link
             if remoteUrl[0] == '/':
@@ -68,7 +69,7 @@ class MenuRowLayout(RowView):
     title = _(u"Menu")
 
     def inComposeView(self):
-        return ICollageEditLayer.providedBy(self.request)
+        return ICollageEditLayer in providedBy(self.request)
  
  
  # Skins
