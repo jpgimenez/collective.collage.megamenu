@@ -1,7 +1,7 @@
 from Acquisition import aq_inner
 
 from zope.interface import noLongerProvides, alsoProvides
-from zope.component import queryUtility
+from zope.component import queryUtility, getMultiAdapter
 
 from Products.Five import BrowserView
 
@@ -22,6 +22,7 @@ class EnablerView(BrowserView):
     def __init__(self, context, request):
         self.context = aq_inner(context)
         self.request = request
+        self.globals_view = getMultiAdapter((self.context, self.request), name="plone")
 
     def enable(self):
         message = ""
@@ -48,10 +49,21 @@ class EnablerView(BrowserView):
 
     @memoize
     def is_enabled(self):
-        return IMegamenuEnabled.providedBy(self.context)
+        globals = self.globals_view
+        if globals.isFolderOrFolderDefaultPage():
+            folder = globals.getCurrentFolder()
+            return IMegamenuEnabled.providedBy(folder)
+        else:
+            return False
 
+    @memoize
     def is_disabled(self):
-        return not self.is_enabled()
+        globals = self.globals_view
+        if globals.isFolderOrFolderDefaultPage():
+            folder = globals.getCurrentFolder()
+            return not IMegamenuEnabled.providedBy(folder)
+        else:
+            return False
 
     def return_with_message(self, message):
         request = self.request

@@ -35,7 +35,7 @@
 
   <browser:page
      name="menu-is-enabled"
-     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     for="*"
      permission="zope.Public"
      class="collective.collage.megamenu.browser.views.EnablerView"
      attribute="is_enabled"
@@ -44,7 +44,7 @@
 
   <browser:page
      name="menu-is-disabled"
-     for="collective.collage.megamenu.interfaces.IMegamenuCapable"
+     for="*"
      permission="zope.Public"
      class="collective.collage.megamenu.browser.views.EnablerView"
      attribute="is_disabled"
