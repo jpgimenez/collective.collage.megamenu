@@ -3,7 +3,7 @@
   <order manager="plone.portalheader">
     <viewlet name="collective.collage.megamenu.megamenu" insert-after="plone.global_sections" />
   </order>
-  <hidden manager="plone.portalheader">
+  <hidden manager="plone.portalheader" skinname="*">
     <viewlet name="plone.global_sections" />
   </hidden>
 </object>

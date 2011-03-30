@@ -2,3 +2,4 @@
     define="menu nocall:view/menufolder"
     condition="view/has_megamenu"
     content="structure menu/@@menu-renderer|nothing" />
+

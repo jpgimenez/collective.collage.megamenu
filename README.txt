@@ -69,11 +69,8 @@ Next steps (required functionalities)
 =====================================
 
 1. Display actions in folder default pages (actions aren't shown in 
-   News folder when using News collection as default page).
-#. Change ``SettingsView`` to use the same attributes as in control panel.
-#. Hide ``plone.global_sections`` viewlet after installation.
-#. Add controlpanel option to fallback to ``plone.global_sections`` viewlet
-   if no megamenu is enabled.
+   News folder when using News collection as default page). DONE!
+#. Hide ``plone.global_sections`` viewlet after installation. DONE!
 #. Add interfaces for every browser view and viewlet.
 #. Backport to Plone 3.
 #. Add tests for everything.
