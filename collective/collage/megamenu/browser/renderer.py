@@ -20,7 +20,7 @@ class MenuRenderer(BrowserView):
     def getItems(self):
         ajax = self.settings.ajax
         # TODO: Restrict items?
-        contents = self.context.getFolderContents()
+        contents = self.context.getFolderContents(contentFilter={'hidden': 'all'})
         
         # Before getting items (actually, before rendering them), remove ICollageEditLayer from request
         composing = ICollageEditLayer.providedBy(self.request)

@@ -12,8 +12,15 @@ class MegamenuViewlet(common.ViewletBase):
     def update(self):
         context = aq_inner(self.context)
         request = self.request
+        test_folder = request.form.get('megamenu-test')
         settings = getMultiAdapter((context, request), name="megamenu-settings")
-        self.menufolder = settings.menufolder
+        if test_folder:
+            self.menufolder = settings.resolve_folder(test_folder)
+            self.testing = True
+        else:
+            self.menufolder = settings.menufolder
+            self.testing = False
+            
         if not IMegamenuEnabled in providedBy(self.menufolder):
             self.menufolder = None
         self.has_megamenu = not self.menufolder is None
