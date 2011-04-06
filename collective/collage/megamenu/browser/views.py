@@ -88,7 +88,7 @@ class EnablerView(BrowserView):
         return request.response.redirect(url)
 
 ## Configuration options View
-class SettingsView(BrowserView):
+class CookedSettingsView(BrowserView):
 
     def __init__(self, context, request):
         self.context = aq_inner(context)
@@ -98,13 +98,19 @@ class SettingsView(BrowserView):
         self.enabled = settings.enabled and settings.megamenu_folder
         self.menufolder = None
         if self.enabled:
-            catalog = getToolByName(self.context, 'portal_catalog')
-            brain = catalog(UID=settings.megamenu_folder)
-            if len(brain)>0:
-                try:
-                    self.menufolder = brain[0].getObject()
-                except:
-                    pass
+            self.menufolder = self.resolve_folder(settings.megamenu_folder)
 
         self.ajax = settings.deferred_rendering
+        
+    def resolve_folder(self, UID):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        brain = catalog(UID=UID)
+        menufolder = None
+        if len(brain)>0:
+            try:
+                menufolder = brain[0].getObject()
+            except:
+                pass
+        return menufolder
+        
 

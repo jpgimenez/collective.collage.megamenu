@@ -1,9 +1,9 @@
-from zope.interface import Interface
+from zope.interface import Interface, Attribute
 from zope.schema import Bool, Choice
 from collective.collage.megamenu import message_factory as _
 
 class IDisplayingMegamenuLayer(Interface):
-    """ A
+    """ 
     """
 
 
@@ -33,3 +33,15 @@ class IMegamenuSettings(Interface):
 
     deferred_rendering = Bool(title=_(u"Load dropdown menu via AJAX"),
                               description=_(u"If selected, dropdown options will not be included in original HTML but loaded via AJAX. These options won't be available for search engines."))
+                              
+class ICookedSettingsView(Interface):
+    """ A browser view with some processing of control panel settings
+    """
+    
+    def resolve_folder(UID):
+        """ Given a UID, get the folder via catalog
+        """
+    
+    menufolder = Attribute("""Folder that is used to display megamenu""")
+    enabled = Attribute("""Should display megamenu? Folder is megamenu-enabled?""")
+    ajax = Attribute("""Load drop-down submenues via AJAX""")

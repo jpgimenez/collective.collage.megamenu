@@ -64,7 +64,8 @@
      name="megamenu-settings"
      for="*"
      permission="zope.Public"
-     class="collective.collage.megamenu.browser.views.SettingsView"
+     allowed_interface="collective.collage.megamenu.interfaces.ICookedSettingsView"
+     class="collective.collage.megamenu.browser.views.CookedSettingsView"
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />
 
