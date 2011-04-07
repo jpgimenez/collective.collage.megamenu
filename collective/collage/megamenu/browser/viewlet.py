@@ -12,11 +12,13 @@ class MegamenuViewlet(common.ViewletBase):
     def update(self):
         context = aq_inner(self.context)
         request = self.request
+        # If testing a megamenu, use the requested folder instead of the one
+        # specified in controlpanel
         test_folder = request.form.get('megamenu-test')
         settings = getMultiAdapter((context, request), name="megamenu-settings")
         if test_folder:
             self.menufolder = settings.resolve_folder(test_folder)
-            self.testing = True
+            self.testing = settings.menufolder.UID() != test_folder
         else:
             self.menufolder = settings.menufolder
             self.testing = False
