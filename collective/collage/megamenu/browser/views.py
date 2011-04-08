@@ -13,6 +13,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 
 from collective.collage.megamenu.interfaces import IMegamenuCapable, IMegamenuEnabled, IMegamenuSettings
+from collective.collage.megamenu.config import HAS_HIDDENCONTENT
 from collective.collage.megamenu import message_factory as _
 
 from plone.memoize.instance import memoize
@@ -24,6 +25,9 @@ class EnablerView(BrowserView):
         self.context = aq_inner(context)
         self.request = request
         self.globals_view = getMultiAdapter((self.context, self.request), name="plone")
+        settings = getMultiAdapter((self.context, self.request), name="megamenu-settings")
+        self.auto_hide = settings.auto_hide
+        self.auto_show = settings.auto_show
 
     def enable(self):
         message = ""
@@ -31,7 +35,9 @@ class EnablerView(BrowserView):
         if not self.is_enabled():
             alsoProvides(self.context, IMegamenuEnabled)
             message = _(u"Folder can now be used as megamenu")
-
+            if self.auto_hide:
+                self._set_hidden(True)
+            
         self.return_with_message(message)
 
 
@@ -41,8 +47,25 @@ class EnablerView(BrowserView):
         if self.is_enabled():
             noLongerProvides(self.context, IMegamenuEnabled)
             message = _(u"Folder can no longer be used as megamenu")
+            if self.auto_show:
+                self._set_hidden(False)
+
 
         self.return_with_message(message)
+        
+    def _set_hidden(self, hide):
+        context = self.context
+        catalog = getToolByName(context, 'portal_catalog')
+        brains = catalog(path='/'.join(context.getPhysicalPath()), hidden=(not hide))
+        for brain in brains:
+            try:
+                object = brain.getObject()
+                current = getattr(object, 'hidden', False)
+                if current!=hide:
+                    setattr(object, 'hidden', hide)
+                    object.reindexObject(idx=['hidden',])
+            except:
+                pass
 
     @memoize
     def is_capable(self):
@@ -101,6 +124,8 @@ class CookedSettingsView(BrowserView):
             self.menufolder = self.resolve_folder(settings.megamenu_folder)
 
         self.ajax = settings.deferred_rendering
+        self.auto_hide = HAS_HIDDENCONTENT and settings.auto_hide
+        self.auto_show = HAS_HIDDENCONTENT and settings.auto_show
         
     def resolve_folder(self, UID):
         catalog = getToolByName(self.context, 'portal_catalog')

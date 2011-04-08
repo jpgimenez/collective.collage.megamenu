@@ -11,12 +11,13 @@ Uses
 to support nested `Collage
 <http://pypi.python.org/pypi/Products.Collage>`_ objects.
 
-Adds three actions in portal_actions/object_buttons:
+Adds some actions in portal_actions/object_buttons:
 
 1. **Enable Megamenu**: adds ``IMegamenuEnabled`` interface to current folder.
-2. **Current Megamenu**: selects current folder as current megamenu (the one
+#. **Current Megamenu**: selects current folder as current megamenu (the one
    that will be displayed in ``plone.portalheader`` viewlet manager).
-3. **Disable Megamenu**: removes ``IMegamenuEnabled`` interface to current folder.
+#. **Disable Megamenu**: removes ``IMegamenuEnabled`` interface to current folder.
+#. **Test Megamenu**: shows a preview of the current megamenu-enabled folder as if it were *the* megamenu. 
 
 Collage layout-views for ``ATCTContent``: ``menu`` and ``intro``.
 
@@ -65,13 +66,20 @@ You can:
 3. Choose whether you want to include drop-down HTML markup in the page or
    load it via AJAX.
    
+If collective.hiddencontent is available:
+
+4. Automatically hide all folder contents (and folder itself) when 
+   megamenu-enabling.
+5. Automatically show all folder contents (and folder itself) when 
+   megamenu-disabling.
+   
 Next steps (required functionalities)
 =====================================
 
 1. Display actions in folder default pages (actions aren't shown in 
    News folder when using News collection as default page). DONE!
 #. Hide ``plone.global_sections`` viewlet after installation. DONE!
-#. Add interfaces for every browser view and viewlet.
+#. Add interfaces for every browser view and viewlet. WORKING
 #. Backport to Plone 3.
 #. Add tests for everything.
 
