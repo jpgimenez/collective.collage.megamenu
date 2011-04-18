@@ -3,6 +3,7 @@ from Acquisition import aq_inner
 from zope.interface import noLongerProvides, alsoProvides
 from zope.component import getMultiAdapter
 from Products.Five import BrowserView
+from Products.CMFCore.utils import getToolByName
 
 from Products.Collage.interfaces import ICollageEditLayer
 
@@ -18,16 +19,27 @@ class MenuRenderer(BrowserView):
         self.settings = getMultiAdapter((context, request), name="megamenu-settings")
 
     def getItems(self):
+        context = self.context
+        request = self.request
         ajax = self.settings.ajax
         # TODO: Restrict items?
-        contents = self.context.getFolderContents(contentFilter={'hidden': 'all'})
+        # Taken from Products/CMFPlone/skins/plone_scripts/getFolderContents.py to bypass show_inactive filter
+        catalog = getToolByName(context, 'portal_catalog')
+        query = {}
+        query['sort_on'] = 'getObjPositionInParent'
+        path = {}
+        path['query'] = '/'.join(context.getPhysicalPath())
+        path['depth'] = 1
+        query['path'] = path
+        contents = catalog.queryCatalog(query, show_all=1, show_inactive=True, )
+        #contents = self.context.getFolderContents(contentFilter={'show_inactive': True})
         
         # Before getting items (actually, before rendering them), remove ICollageEditLayer from request
-        composing = ICollageEditLayer.providedBy(self.request)
+        composing = ICollageEditLayer.providedBy(request)
         if composing:
-            noLongerProvides(self.request, ICollageEditLayer)
+            noLongerProvides(request, ICollageEditLayer)
             
-        current_url = self.request.get('ACTUAL_URL') + '/'
+        current_url = request.get('ACTUAL_URL') + '/'
         items = []
         for content in contents:
             item = {}
@@ -82,6 +94,6 @@ class MenuRenderer(BrowserView):
             items.append(item)
 
         if composing:
-            alsoProvides(self.request, ICollageEditLayer)
+            alsoProvides(request, ICollageEditLayer)
             
         return items

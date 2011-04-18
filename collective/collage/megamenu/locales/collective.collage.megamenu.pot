@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-03-22 20:19+0000\n"
+"POT-Creation-Date: 2011-04-18 14:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.collage.megamenu\n"
 
-#: ./browser/collage.py:85
+#: ./browser/collage.py:86
 msgid "Both lines"
 msgstr ""
 
-#: ./browser/collage.py:79
+#: ./browser/collage.py:80
 msgid "Bottom line"
 msgstr ""
 
@@ -41,23 +41,31 @@ msgstr ""
 msgid "Enable Megamenu"
 msgstr ""
 
-#: ./browser/views.py:41
+#: ./browser/views.py:49
 msgid "Folder can no longer be used as megamenu"
 msgstr ""
 
-#: ./browser/views.py:31
+#: ./browser/views.py:37
 msgid "Folder can now be used as megamenu"
 msgstr ""
 
-#: ./browser/collage.py:55
+#: ./interfaces.py:37
+msgid "Hide folder contents when enabling as megamenu"
+msgstr ""
+
+#: ./browser/collage.py:56
 msgid "Highlight"
+msgstr ""
+
+#: ./interfaces.py:38
+msgid "If selected, after enabling a folder as megamenu, all its contents (and the folder itself)  will be automatically set as expired hiding them in search results from regular users. This can prevent visitors to learn about content that should be shown only in the megamenu. You can also hide or show every content manually by editing it and setting an expiration date"
 msgstr ""
 
 #: ./interfaces.py:35
 msgid "If selected, dropdown options will not be included in original HTML but loaded via AJAX. These options won't be available for search engines."
 msgstr ""
 
-#: ./browser/collage.py:52
+#: ./browser/collage.py:53
 msgid "Link"
 msgstr ""
 
@@ -69,28 +77,36 @@ msgstr ""
 msgid "Megamenu folder"
 msgstr ""
 
-#: ./browser/controlpanel.py:14
+#: ./browser/controlpanel.py:15
 #: ./profiles/default/controlpanel.xml
 msgid "Megamenu settings"
 msgstr ""
 
-#: ./browser/collage.py:23
+#: ./browser/collage.py:24
 msgid "Menu"
 msgstr ""
 
-#: ./browser/collage.py:76
+#: ./browser/collage.py:77
 msgid "No line"
 msgstr ""
 
-#: ./browser/views.py:69
+#: ./browser/views.py:115
 msgid "Press 'Save' button to select '${title}' as Megamenu folder"
 msgstr ""
 
-#: ./browser/collage.py:49
+#: ./interfaces.py:41
+msgid "Show folder contents when disabling as megamenu"
+msgstr ""
+
+#: ./profiles/default/actions.xml
+msgid "Test Megamenu"
+msgstr ""
+
+#: ./browser/collage.py:50
 msgid "Title"
 msgstr ""
 
-#: ./browser/collage.py:82
+#: ./browser/collage.py:83
 msgid "Vertical lines"
 msgstr ""
 
