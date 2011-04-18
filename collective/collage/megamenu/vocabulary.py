@@ -1,5 +1,5 @@
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from zope.site.hooks import getSite
+from zope.app.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from collective.collage.megamenu.interfaces import IMegamenuEnabled
 
