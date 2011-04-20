@@ -37,4 +37,12 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
       
+  <genericsetup:registerProfile
+      name="plone3"
+      title="Classic theme for collective.collage.megamenu"
+      directory="profiles/plone3"
+      description="Installs the collective.collage.megamenu classic theme"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+      
 </configure>

@@ -11,6 +11,7 @@
      for="collective.collage.megamenu.interfaces.IMegamenuEnabled"
      permission="zope.Public"
      class="collective.collage.megamenu.browser.renderer.MenuRenderer"
+     allowed_interface="collective.collage.megamenu.browser.interfaces.IMenuRenderer"
      template="templates/menu_renderer.pt"
      layer="collective.collage.megamenu.interfaces.IMegamenuLayer"
      />

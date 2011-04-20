@@ -1,27 +1,26 @@
 from Acquisition import aq_inner
 
-from zope.interface import noLongerProvides, alsoProvides
+from zope.interface import noLongerProvides, alsoProvides, implements
 from zope.component import getMultiAdapter
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
 from Products.Collage.interfaces import ICollageEditLayer
 
+from collective.collage.megamenu.browser.interfaces import IMenuRenderer
+
 ### Menu Renderer view
 
 class MenuRenderer(BrowserView):
-
-    def __init__(self, context, request):
-        self.context = aq_inner(context)
-        self.request = request
-        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
-        self.portal_url = portal_state.portal_url()
-        self.settings = getMultiAdapter((context, request), name="megamenu-settings")
+    implements(IMenuRenderer)
 
     def getItems(self):
         context = self.context
         request = self.request
-        ajax = self.settings.ajax
+        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
+        portal_url = portal_state.portal_url()
+        settings = getMultiAdapter((context, request), name="megamenu-settings")
+        ajax = settings.ajax
         # TODO: Restrict items?
         # Taken from Products/CMFPlone/skins/plone_scripts/getFolderContents.py to bypass show_inactive filter
         catalog = getToolByName(context, 'portal_catalog')
@@ -56,7 +55,7 @@ class MenuRenderer(BrowserView):
                 # For ATLinks, get the link
                 remoteUrl = content.getRemoteUrl
                 if remoteUrl[0] == '/':
-                    item['url'] = '%s%s' % (self.portal_url, remoteUrl)
+                    item['url'] = '%s%s' % (portal_url, remoteUrl)
                 else:
                     item['url'] = remoteUrl
             else:
@@ -72,8 +71,8 @@ class MenuRenderer(BrowserView):
             # Should item be rendererd as 'selected'?
             # 1. item.url==portal_url and current_url==item.url
             # 2. item.url!=portal_url and current_url.startswith(item.url)
-            if (item['url']==self.portal_url+'/' and current_url==item['url']) or \
-               (item['url']!=self.portal_url+'/' and current_url.startswith(item['url'])):
+            if (item['url']==portal_url+'/' and current_url==item['url']) or \
+               (item['url']!=portal_url+'/' and current_url.startswith(item['url'])):
                 item['selected_class'] = 'selected'
             else:
                 item['selected_class'] = ''

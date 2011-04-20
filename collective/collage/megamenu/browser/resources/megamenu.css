@@ -66,6 +66,29 @@
 
 /* End Menu rendering */
 
+/* Content layout */
+#portal-megamenu ul li .megamenu-title {
+    margin-bottom: 1em;
+}
+
+#portal-megamenu ul li .megamenu-content a {
+    font-weight: bold;
+    padding: 0;
+    display: inline;
+    white-space: normal;
+}
+#portal-megamenu ul li .megamenu-content a:hover {
+    background: transparent;
+    color: #205c90;
+    text-decoration: underline;
+
+}
+#portal-megamenu ul li .megamenu-content p {
+    color: black;
+}
+
+/* End Content layout */
+
 /* Menu styling for Sunburst theme */
 
 .actionicon-object_buttons-megamenu-enable, 
@@ -170,27 +193,5 @@
     background: #ddd;
 }
 
-/* End Menu styling */
+/* End Menu styling for Sunburst theme */
 
-/* Content layout */
-#portal-megamenu ul li .megamenu-title {
-    margin-bottom: 1em;
-}
-
-#portal-megamenu ul li .megamenu-content a {
-    font-weight: bold;
-    padding: 0;
-    display: inline;
-    white-space: normal;
-}
-#portal-megamenu ul li .megamenu-content a:hover {
-    background: transparent;
-    color: #205c90;
-    text-decoration: underline;
-
-}
-#portal-megamenu ul li .megamenu-content p {
-    color: black;
-}
-
-/* End Content layout */

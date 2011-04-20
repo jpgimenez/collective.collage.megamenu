@@ -155,7 +155,7 @@ class CookedSettingsView(BrowserView):
         self.enabled = settings.enabled and settings.megamenu_folder
         self.menufolder = None
         if self.enabled:
-            self.menufolder = self.resolve_folder(settings.megamenu_folder)
+            self.menufolder = settings.megamenu_folder
 
         self.ajax = settings.deferred_rendering
         self.auto_hide = settings.auto_hide

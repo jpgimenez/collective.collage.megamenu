@@ -1,22 +1,22 @@
 /* Copied and adapted from http://www.sohtanaka.com/web-design/mega-drop-downs-w-css-jquery/ */
 
-$(document).ready(function() {
+jq(document).ready(function() {
 
 	//Calculate width of all ul's
-	(function($) { 
+	(function(jq) { 
 		jQuery.fn.calcSubWidth = function() {
 			// Should receive a .collage-row element
 			var rowWidth = 0;
 			//Calculate row
-			$(this).find(">ul").each(function() {					
-				rowWidth += $(this).width(); 
+			jq(this).find(">ul").each(function() {					
+				rowWidth += jq(this).width(); 
 			});	
 			return rowWidth;
 		};
 	})(jQuery); 
 
 
-	(function($) {
+	(function(jq) {
 		jQuery.fn.resetWidth = function(nesting) {
 			// Should receive a .sub element
 			// Show the element (opacity = 0) to set widths properly
@@ -29,10 +29,10 @@ $(document).ready(function() {
 			//Calculate each row
 			rows.each(function() {
 			    // If there are nested menues, reset their widths before
-			    var me = $(this);
+			    var me = jq(this);
 			    var nested = me.find('>ul>li.menu_view_nested-menu');
 			    nested.each(function() {
-			        $(this).resetWidth(true);
+			        jq(this).resetWidth(true);
 			    });
 				var rowWidth = me.calcSubWidth();
 				//Find biggest row
@@ -41,7 +41,7 @@ $(document).ready(function() {
 				}
 			});
 			rows.each(function() {
-				var columns = $(this).find('>ul');
+				var columns = jq(this).find('>ul');
 				var count = columns.length;
 				columns.css('width', biggestRow/count);
 			});
@@ -63,20 +63,20 @@ $(document).ready(function() {
         // Get all links and select their parent li-elements 
         // if href matches current URL beginning
         var url = document.location.href;
-        $('#portal-megamenu li.menu_view_menu a').each(function() {
+        jq('#portal-megamenu li.menu_view_menu a').each(function() {
             if(url.startsWith(this.href)) {
-                $(this).closest('li').addClass('selected');
+                jq(this).closest('li').addClass('selected');
             }
         });
     }
  
 	function megaHoverOver(){
-		var me = $(this);
+		var me = jq(this);
 		me.addClass('active');
 		var sub = me.find('.sub');
 		sub.stop().fadeTo(50, 1).show();
 			
-		var wWidth = $(window).width();
+		var wWidth = jq(window).width();
 		sub.css('left', 0);
 		var sWidth = sub.width();
 		var difWidth = wWidth-(sub.offset().left+sWidth+19+20); //19px = scrollbar + 20px=padding
@@ -88,10 +88,10 @@ $(document).ready(function() {
 	}
 	
 	function megaHoverOut(){ 
-		var me = $(this);
+		var me = jq(this);
 		me.removeClass('active');
 		me.find(".sub").stop().fadeTo(50, 0, function() {
-		  $(this).hide(); 
+		  jq(this).hide(); 
 	  });
 	}
  
@@ -104,7 +104,7 @@ $(document).ready(function() {
 		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)	
 	};
  
-	var megamenu = $('#portal-megamenu');
+	var megamenu = jq('#portal-megamenu');
 	megamenu.find('li .sub').css({'opacity':'0'});
 	// Bind over/out and click events of li.top-level
 	megamenu.find('li.top-level').
@@ -112,7 +112,7 @@ $(document).ready(function() {
 	    click(megaHoverOver).
 		// and Bind click event of their links
 		find('a').click(function(event) {
-			if($(this).closest('li').find('.sub').length>0) {
+			if(jq(this).closest('li').find('.sub').length>0) {
 				event.preventDefault();
 			}
 		});
@@ -121,16 +121,16 @@ $(document).ready(function() {
 	var deferred = megamenu.find('a[rel=deferred]');
 	if(deferred.length>0) {
 		megamenu.find('a[rel=deferred]').each(function() {
-				$(this).parent().load(this.href, function(response, status, request) {
+				jq(this).parent().load(this.href, function(response, status, request) {
 				// Reset width
-				$(this).resetWidth();
+				jq(this).resetWidth();
 				applySelected();
 			});
 		});
  	} else {
  		// If there aren't deferred dropdowns, just reset their widths
  		megamenu.find('.sub').each(function() {
- 		    $(this).resetWidth();
+ 		    jq(this).resetWidth();
  		    applySelected();
  		});
 	}

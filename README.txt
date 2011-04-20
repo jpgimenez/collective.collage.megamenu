@@ -80,7 +80,7 @@ Next steps (required functionalities)
    News folder when using News collection as default page). DONE!
 #. Hide ``plone.global_sections`` viewlet after installation. DONE!
 #. Add interfaces for every browser view and viewlet. ALMOST
-#. Backport to Plone 3.
+#. Backport to Plone 3. DONE!
 #. Add tests for everything.
 
 Screenshots
