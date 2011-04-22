@@ -4,7 +4,7 @@ Rough list of features
 Plone implementation of a mega drop-down menu based on 
 http://www.sohtanaka.com/web-design/mega-drop-downs-w-css-jquery/.
 
-Developed on Plone 4 (no tests yet).
+Developed for Plone 3 and Plone 4 (no tests yet).
 
 Uses 
 `collective.collage.nested <http://pypi.python.org/pypi/collective.collage.nested>`_ 
@@ -17,14 +17,16 @@ Adds some actions in portal_actions/object_buttons:
 #. **Current Megamenu**: selects current folder as current megamenu (the one
    that will be displayed in ``plone.portalheader`` viewlet manager).
 #. **Disable Megamenu**: removes ``IMegamenuEnabled`` interface to current folder.
-#. **Test Megamenu**: shows a preview of the current megamenu-enabled folder as if it were *the* megamenu. 
+#. **Test Megamenu**: shows a preview of the current megamenu-enabled folder as if 
+   it were *the* megamenu. 
 
 Collage layout-views for ``ATCTContent``: ``menu`` and ``intro``.
 
 Collage renderer-views for Collage, Rows and Columns used inside the above
-layout-views. This is provide cleaner HTML.
+layout-views. This is to provide cleaner HTML.
 
-JavaScript and CSS resources to support megamenu.
+JavaScript and CSS resources to support megamenu. Special CSS for Plone classic 
+theme (Plone 3 theme).
 
 Native support for ATFolders (see ``atfolder.zcml``) can be extended for other
 custom folder implementations.
@@ -61,17 +63,14 @@ Megamenu controlpanel
 You can:
 
 1. Enable / disable megamenu.
-2. Select current megamenu folder (from all the folders providing 
+#. Select current megamenu folder (from all the folders providing 
    ``IMegamenuEnable`` interface).
-3. Choose whether you want to include drop-down HTML markup in the page or
+#. Choose whether you want to include drop-down HTML markup in the page or
    load it via AJAX.
-   
-If collective.hiddencontent is available:
-
-4. Automatically hide all folder contents (and folder itself) when 
-   megamenu-enabling.
-5. Automatically show all folder contents (and folder itself) when 
-   megamenu-disabling.
+#. Automatically hide all folder contents (and folder itself) when 
+   megamenu-enabling (by setting expiration date).
+#. Automatically show all folder contents (and folder itself) when 
+   megamenu-disabling (by removing expiration date).
    
 Next steps (required functionalities)
 =====================================
