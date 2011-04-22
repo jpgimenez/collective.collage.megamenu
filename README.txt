@@ -111,3 +111,9 @@ Screenshots
     :target: http://i.imgur.com/uBNQC.png
     
     Nested Collage: two columns, each of which with two rows.
+    
+.. figure:: http://i.imgur.com/BET2tl.jpg
+    :figwidth: image
+    :target: http://i.imgur.com/BET2t.png
+    
+    Megamenu with classic theme working in Plone 3.

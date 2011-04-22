@@ -13,7 +13,7 @@ jq(document).ready(function() {
 			});	
 			return rowWidth;
 		};
-	})(jQuery); 
+	}(jQuery)); 
 
 
 	(function(jq) {
@@ -21,8 +21,8 @@ jq(document).ready(function() {
 			// Should receive a .sub element
 			// Show the element (opacity = 0) to set widths properly
 			if(!nesting) {
-    			this.css('opacity', 0).show();
-    		}
+				this.css('opacity', 0).show();
+			}
 			// find all direct-child rows (there could be nested menues)
 			var rows = this.find('>.collage-row');
 			var biggestRow = 0;	
@@ -50,13 +50,13 @@ jq(document).ready(function() {
 			this.css({'width' :biggestRow});
 			this.find(">.collage-row:last").css({'margin':'0'});
 			if(!nesting) {
-    			this.hide();
+				this.hide();
 			}
         };
-    })(jQuery);
+	}(jQuery));
 	
 	String.prototype.startsWith = function(text) {
-	    return this.substring(0, text.length)==text;
+		return this.substring(0, text.length)===text;
 	};
 	
     function applySelected() {
@@ -127,12 +127,12 @@ jq(document).ready(function() {
 				applySelected();
 			});
 		});
- 	} else {
- 		// If there aren't deferred dropdowns, just reset their widths
- 		megamenu.find('.sub').each(function() {
- 		    jq(this).resetWidth();
- 		    applySelected();
- 		});
+	} else {
+		// If there aren't deferred dropdowns, just reset their widths
+		megamenu.find('.sub').each(function() {
+			jq(this).resetWidth();
+			applySelected();
+		});
 	}
  
 });
