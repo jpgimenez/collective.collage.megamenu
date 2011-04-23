@@ -4,7 +4,7 @@ Rough list of features
 Plone implementation of a mega drop-down menu based on 
 http://www.sohtanaka.com/web-design/mega-drop-downs-w-css-jquery/.
 
-Developed for Plone 3 and Plone 4 (no tests yet).
+Developed for Plone 3 and Plone 4.
 
 Uses 
 `collective.collage.nested <http://pypi.python.org/pypi/collective.collage.nested>`_ 
