@@ -6,7 +6,7 @@ from zope.interface import providedBy
 
 from Products.Collage.browser.views import BaseView, RowView
 from Products.Collage.interfaces import ICollageEditLayer
-from Products.ATContentTypes.interfaces import IATLink
+from Products.ATContentTypes.interface import IATLink
 
 from collective.collage.megamenu import message_factory as _
 from plone.memoize.instance import memoize

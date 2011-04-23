@@ -118,9 +118,9 @@ class EnablerView(BrowserView):
         return request.response.redirect(request.HTTP_REFERER)
         
     def _set_hidden(self, hide):
-        """ Hides/Shows all contents by setting 'now' as effective date
+        """ Hides/Shows all contents by setting 'yesterday' as effective date
         """
-        now = DateTime()
+        yesterday = DateTime()-1
         context = self.context
         catalog = getToolByName(context, 'portal_catalog')
         brains = catalog(path='/'.join(context.getPhysicalPath()))
@@ -131,13 +131,13 @@ class EnablerView(BrowserView):
                 if hide:
                     # If has to hide, check if current expiration date (if any) is OK.
                     # If not, set expiration date
-                    if current is None or current>now:
-                        object.setExpirationDate(now)
+                    if current is None or current>yesterday:
+                        object.setExpirationDate(yesterday)
                         object.reindexObject()
                 else:
                     # If has to show, check if content has expiration date.
-                    # If it has one and is previous than now, remove it
-                    if not current is None and current<now:
+                    # If it has one and is previous than yesterday, remove it
+                    if not current is None and current<yesterday:
                         object.setExpirationDate(None)
                         object.reindexObject()
             except:

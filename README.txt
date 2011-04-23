@@ -72,16 +72,6 @@ You can:
 #. Automatically show all folder contents (and folder itself) when 
    megamenu-disabling (by removing expiration date).
    
-Next steps (required functionalities)
-=====================================
-
-1. Display actions in folder default pages (actions aren't shown in 
-   News folder when using News collection as default page). DONE!
-#. Hide ``plone.global_sections`` viewlet after installation. DONE!
-#. Add interfaces for every browser view and viewlet. ALMOST
-#. Backport to Plone 3. DONE!
-#. Add tests for everything.
-
 Screenshots
 ===========
 
