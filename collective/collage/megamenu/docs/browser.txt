@@ -18,10 +18,6 @@ so we have to manually hide plone.global_sections::
 
     >>> browser.open(portal_url + '/@@manage-viewlets')
     >>> browser.getLink(url='@@manage-viewlets?hide=plone.portalheader%3Aplone.global_sections').click()
-    >>> browser.getLink(url='@@manage-viewlets?hide=plone.portalheader%3Aplone.global_sections').click()
-    Traceback (most recent call last):
-    ...
-    LinkNotFoundError
     
 Go to Menu folder and set it as current megamenu
     >>> browser.open(self.menu.absolute_url())
@@ -193,12 +189,10 @@ Up until now, all megamenu folder contents were accessible to regular users in s
     >>> browser.getLink('Log out').click()
     >>> browser.getControl('Search Site').value = 'Menu'
     >>> browser.getControl('Search', index=1).click()
-    >>> '2 items matching your search terms' in browser.contents
-    True
-    >>> browser.getLink('Menu folder').url.endswith('/menu/?searchterm=Menu')
-    True
-    >>> browser.getLink('Alternative menu').url.endswith('/other-menu/?searchterm=Menu')
-    True
+    >>> browser.getLink('Menu folder')
+    <Link text='Menu folder' url='...'>
+    >>> browser.getLink('Alternative menu')
+    <Link text='Alternative menu' url='...'>
     
 However, there's an extra feature in Megamenu controlpanel to hide/show menu folder
 and its contents when enabling/disabling as Megamenu::
@@ -224,21 +218,21 @@ hidden in search results::
     >>> browser.getLink('Log out').click()
     >>> browser.getControl('Search Site').value = 'Menu'
     >>> browser.getControl('Search', index=1).click()
-    >>> '1 items matching your search terms' in browser.contents
-    True
     >>> browser.getLink('Menu folder')
     Traceback (most recent call last):
     ...
     LinkNotFoundError
-    >>> browser.getLink('Alternative menu').url.endswith('/other-menu/?searchterm=Menu')
-    True
+    >>> browser.getLink('Alternative menu')
+    <Link text='Alternative menu' url='...'>
     
 Menu folder and its contents are, although, accessible by regular users
 as they were hidden by means of expiration date::
 
+    >>> from DateTime import DateTime
+    >>> yesterday = DateTime() - 1
     >>> browser.open(self.menu.absolute_url())
-    >>> '<span class="state-expired">expired</span>' in browser.contents
+    >>> self.menu.getExpirationDate() <= yesterday
     True
     >>> browser.open(self.menu.absolute_url() + '/collage')
-    >>> '<span class="state-expired">expired</span>' in browser.contents
+    >>> self.menu.collage.getExpirationDate() <= yesterday
     True
