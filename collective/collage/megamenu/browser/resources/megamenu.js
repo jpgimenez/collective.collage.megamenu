@@ -72,33 +72,85 @@ jq(document).ready(function() {
  
 	function megaHoverOver(){
 		var me = jq(this);
-		me.addClass('active');
+		// Check if there's another open menu (may be open because of a focused input or button)
+		var currentlyActive = me.siblings('.active');
+		if(currentlyActive.length>0) {
+			// If found an active menu, hide it
+			hideMenu(currentlyActive);
+			me.find('a').focus();
+		}
+		me.removeClass('hover').addClass('active').prev('li').addClass('nextActive');
+		me.next('li').addClass('prevActive');
 		var sub = me.find('.sub');
+		var shadow = sub.data('shadow');
+		if(!shadow) {
+			sub.after('<div class="subShadow" style="display: none;"></div>');
+			shadow = sub.next('.subShadow');
+			sub.data('shadow', shadow);
+		}
 		sub.stop().fadeTo(50, 1).show();
+		shadow.stop().fadeTo(50,0.6).show();
 			
 		var wWidth = jq(window).width();
 		sub.css('left', 0);
 		var sWidth = sub.width();
 		var difWidth = wWidth-(sub.offset().left+sWidth+19+20); //19px = scrollbar + 20px=padding
+		var left = 0;
 		if(difWidth<0) {
-				sub.css('left', difWidth);
-		} else {
-				sub.css('left', 0);
+				left = difWidth;
 		}
+		sub.css('left', left);
+		shadow.css({
+			left: left,
+			width: sub.outerWidth(),
+			height: sub.outerHeight()
+		})
 	}
 	
 	function megaHoverOut(){ 
 		var me = jq(this);
-		me.removeClass('active');
-		me.find(".sub").stop().fadeTo(50, 0, function() {
+		var focusField = document.activeElement; // :focus in jQuery>=1.6
+		if(focusField.nodeType==1 && focusField.tagName.toLowerCase().match(/^(input|textarea|select|button)$/)) { // focusable form elements
+			focusField = jq(focusField);
+			if (focusField.closest('li.top-level.active').length>0) {
+				// if focused field is inside the menu, relay the hideMenu on click event
+				jq(window).click(function(event) {
+					var target = jq(event.target);
+					// if clicked element is outside the active menu
+					var activeParent = target.closest('li.top-level.active');
+					if(activeParent.length===0) {
+						// hide it
+						hideMenu(me);
+					}
+
+				});
+				return;
+			}		
+		}
+
+		hideMenu(me);
+	}
+
+	function hideMenu(me) {
+		me = me || jq(this);
+		me.removeClass('active').prev('li').removeClass('nextActive');
+		me.next('li').removeClass('prevActive');
+		var sub = me.find('.sub');
+		var shadow = sub.data('shadow');
+		sub.stop().fadeTo(50, 0, function() {
 		  jq(this).hide(); 
-	  });
+		});
+		if(shadow) {
+			shadow.stop().fadeTo(50, 0, function() {
+				jq(this).hide();
+			});
+		}
 	}
  
  
 	var config = {	
 		 sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)	
-		 interval: 100, // number = milliseconds for onMouseOver polling interval	
+		 interval: 200, // number = milliseconds for onMouseOver polling interval	
 		 over: megaHoverOver, // function = onMouseOver callback (REQUIRED)	
 		 timeout: 100, // number = milliseconds delay before onMouseOut	
 		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)	
@@ -108,9 +160,14 @@ jq(document).ready(function() {
 	megamenu.find('li .sub').css({'opacity':'0'});
 	// Bind over/out and click events of li.top-level
 	megamenu.find('li.top-level').
+		hover(function() {
+			jq(this).addClass('hover');
+		}, function() {
+			jq(this).removeClass('hover');
+		}).
 	    hoverIntent(config).
 	    click(megaHoverOver).
-		// and Bind click event of their links
+		// and Bind click event of their links-with-menues to prevent redirection
 		find('a').click(function(event) {
 			if(jq(this).closest('li').find('.sub').length>0) {
 				event.preventDefault();

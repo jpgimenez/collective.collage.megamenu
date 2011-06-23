@@ -30,6 +30,11 @@
 	float: left;
 	display: none;
 }
+
+#portal-megamenu li.top-level .subShadow {
+	position: absolute;
+}
+
 #portal-megamenu li .collage-row {
     clear: both; 
     float: left; 
@@ -131,6 +136,21 @@
 	-moz-border-radius-bottomleft: 5px;
 	-khtml-border-radius-bottomleft: 5px;
 	-webkit-border-bottom-left-radius: 5px;
+}
+
+#portal-megamenu li.top-level .subShadow {
+	top: 47px;
+	background: black; /* subShadow has 0.6 opacity when displayed */
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	/* Add or change padding/margin move padding to re-place shadow box:
+	 * - for right-bottom shadow add bottom padding and left margin
+	 * - for left-bottom shadow add bottom padding and left negative margin
+	 * - for left-right-bottom shadow, add bottom padding, left negative margin and double right padding
+	 */
+	padding: 0 0 2px 0; 
+	margin: 0 0 0 2px;
+	
 }
 
 #portal-megamenu li .collage-row {

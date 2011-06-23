@@ -2,7 +2,9 @@
     tal:define="items view/getItems">
 
     <tal:items repeat="item items">
-    <li tal:attributes="class string:top-level ${item/selected_class};
+    <li tal:define="last repeat/item/end;
+                    last_class python:last and 'top-level-last' or ''"
+    	tal:attributes="class string:top-level ${item/selected_class} top-level-${repeat/item/number} ${last_class};
                         id string:mm-tl-${item/id}">
         <a class="menu-item" href="" 
             tal:attributes="href item/url; 
