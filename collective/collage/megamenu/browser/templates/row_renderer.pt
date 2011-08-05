@@ -6,7 +6,7 @@
   <ul tal:define="number repeat/item/number;
                   end python: repeat['item'].end and 'collage-last-object' or '';
                   start python: repeat['item'].start and 'collage-first-object' or ''"
-      tal:attributes="class string:column-block block_$number $end $start megamenu">
+      tal:attributes="class string:collage-column column-block block_$number $end $start megamenu">
     <tal:item replace="structure item" />
   </ul>
 </tal:row>

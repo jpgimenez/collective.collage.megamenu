@@ -28,10 +28,3 @@ Installation
 
 You can skip the ZCML slug if you are using Plone 3.3 or if you are going to explicitly include
 the package from another package's configure.zcml file.
-
-Plone 3 installation
---------------------
-
-After installing the product via portal_quickinstaller or Add-on products configlet
-go to ``portal_setup`` and import the **Classic theme for 
-collective.collage.megamenu** profile, to give Megamenu a Plone 3 classic skin.

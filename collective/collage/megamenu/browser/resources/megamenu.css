@@ -37,14 +37,14 @@
         z-index: 3;
 }
 
-#portal-megamenu li .collage-row {
+#portal-megamenu li .menu-row {
     clear: both; 
     float: left; 
     width: 100%; 
 }
 
 /* Reset width to auto for nested rows */
-#portal-megamenu li .menu_view_nested-menu .collage-row {
+#portal-megamenu li .menu_view_nested-menu .menu-row {
     width: auto; 
 }
 
@@ -74,27 +74,18 @@
 /* End Menu rendering */
 
 /* Content layout */
-#portal-megamenu ul li .megamenu-title {
-    margin-bottom: 1em;
-}
-
 #portal-megamenu ul li .megamenu-content a {
-    font-weight: bold;
-    padding: 0;
     display: inline;
     white-space: normal;
 }
-#portal-megamenu ul li .megamenu-content a:hover {
-    background: transparent;
-    color: #205c90;
-    text-decoration: underline;
-
-}
-#portal-megamenu ul li .megamenu-content p {
-    color: black;
-}
 
 /* End Content layout */
+
+/* Display well menu options while composing */
+#collage.edit .menu-item {
+	margin-bottom: 1em;
+}
+/* End Display well menu options while composing */
 
 /* Menu styling for Sunburst theme */
 
@@ -155,7 +146,7 @@
 	
 }
 
-#portal-megamenu li .collage-row {
+#portal-megamenu li .menu-row {
     margin: 0 auto 10px;
 }
 
@@ -214,6 +205,36 @@
 #portal-megamenu .sub li.selected a {
     background: #ddd;
 }
+
+#portal-megamenu ul li .megamenu-content a {
+    font-weight: bold;
+    padding: 0;
+}
+#portal-megamenu ul li .megamenu-content a:hover {
+    background: transparent;
+    color: #205c90;
+    text-decoration: underline;
+}
+#portal-megamenu ul li .megamenu-content p {
+    color: black;
+}
+
+#portal-megamenu ul li .megamenu-title {
+    margin-bottom: 1em;
+}
+
+#portal-megamenu ul li .megamenu-image {
+	margin-bottom: 1em;
+}
+
+#portal-megamenu ul li .megamenu-content img {
+	border: 1px solid transparent;
+}
+
+#portal-megamenu ul li .megamenu-content a:hover img {
+	border-color: #205C90;
+}
+
 
 /* End Menu styling for Sunburst theme */
 

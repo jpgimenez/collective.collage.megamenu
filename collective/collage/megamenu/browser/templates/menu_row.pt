@@ -1,7 +1,7 @@
 <tal:manager replace="structure provider:collage.ContentManager" />
 
 <div tal:define="skin python:view.getSkin() or ''"
-     tal:attributes="class string:collage-row ${skin}">
+     tal:attributes="class string:menu-row ${skin}">
     <tal:renderer define="renderer nocall: here/@@menu-renderer">
       <tal:batches tal:repeat="columns view/getColumnBatches">
       <div tal:define="layout python: ('one-column', 'two-columns-equal', 'three-columns-equal', 'four-columns-equal', 'five-columns-equal')

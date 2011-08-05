@@ -5,7 +5,7 @@ jq(document).ready(function() {
     //Calculate width of all ul's
     (function(jq) {
         jQuery.fn.calcSubWidth = function() {
-            // Should receive a .collage-row element
+            // Should receive a .menu-row element
             var rowWidth = 0;
             //Calculate row
             jq(this).find(">ul").each(function() {
@@ -24,7 +24,7 @@ jq(document).ready(function() {
                 this.css('opacity', 0).show();
             }
             // find all direct-child rows (there could be nested menues)
-            var rows = this.find('>.collage-row');
+            var rows = this.find('>.menu-row');
             var biggestRow = 0;
             //Calculate each row
             rows.each(function() {
@@ -50,7 +50,7 @@ jq(document).ready(function() {
             this.css({
                 'width': biggestRow
             });
-            this.find(">.collage-row:last").css({
+            this.find(">.menu-row:last").css({
                 'margin': '0'
             });
             if (!nesting) {

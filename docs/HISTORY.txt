@@ -1,8 +1,13 @@
 Changelog
 =========
 
-1.2 (unreleased)
-----------------
+1.1.1 (2011-08-05)
+------------------
+- Corrected z-index for drop-down and shadow
+- Added native collage class names to triggerMove JS function to work
+- Added collage-patch.js with new version of triggerMove that uses
+  collage elements in the current collage object instead of the whole DOM
+- Automatically install Plone 3 classic theme in Plone 3
 
 1.1 (2011-08-05)
 ----------------
