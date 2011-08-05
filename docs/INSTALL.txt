@@ -2,7 +2,7 @@ Installation
 ============
 
 * Add ``collective.collage.megamenu`` to the list of eggs to install and
-   extend to a known good set for ``plone.app.registry``::
+  extend to a known good set for ``plone.app.registry``::
 
     [buildout]
     ...
