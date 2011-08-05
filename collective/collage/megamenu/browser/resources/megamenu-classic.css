@@ -20,12 +20,10 @@
 
 #portal-megamenu li.top-level .sub {
     top: 25px;
-    z-index: 4;
 }
 
 #portal-megamenu li.top-level .subShadow {
 	top: 25px;
-	z-index: 3;
 }
 
     /*** Extra style for personaltools not to compit with megamenu ***/

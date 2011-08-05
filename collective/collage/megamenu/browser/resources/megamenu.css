@@ -29,10 +29,12 @@
 	left: 0;
 	float: left;
 	display: none;
+        z-index: 4;
 }
 
 #portal-megamenu li.top-level .subShadow {
 	position: absolute;
+        z-index: 3;
 }
 
 #portal-megamenu li .collage-row {
