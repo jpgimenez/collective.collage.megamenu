@@ -3,11 +3,12 @@ Changelog
 
 1.1 (unreleased)
 ----------------
-- Added support for plone.app.folder if installed (conditional include)
+- Native support for plone.app.folder if installed (conditional include)
 - Added shadow to drop-down box
 - Added handy class names to top-level ``li`` elements for styling purposes:
   ``top-level-1``, ``top-level-2``, ... ``top-level-last``
 - Added handy class names to prev/next-to ``active`` drop-down ``li`` element
+- Improved accessibility using new 'click' event handlers on menu options
 
 
 1.0 (2011-04-23)

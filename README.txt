@@ -29,7 +29,7 @@ JavaScript and CSS resources to support megamenu. Special CSS for Plone classic
 theme (Plone 3 theme).
 
 Native support for ATFolders (see ``atfolder.zcml``) and plone.app.folder 
-(``ploneappfolder.zcm``) can be extended for other custom folder implementations.
+(``ploneappfolder.zcm``) and can be extended for other custom folder implementations.
 
 How-to create a megamenu
 ========================
