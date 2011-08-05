@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.2 (unreleased)
+----------------
+
 1.1 (2011-08-05)
 ----------------
 - Native support for plone.app.folder if installed (conditional include)
@@ -13,7 +16,6 @@ Changelog
 
 1.0 (2011-04-23)
 ----------------
-
 - Megamenu implementation with Collage
 - Native support for ATFolder
 - i18n support: English and Spanish translations
