@@ -1,4 +1,4 @@
-<ul id="portal-megamenu" class="megamenu"
+<ul id="portal-megamenu" class="megamenu visualNoPrint"
     tal:define="items view/getItems">
 
     <tal:items repeat="item items">

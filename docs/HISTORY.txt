@@ -1,8 +1,9 @@
 Changelog
 =========
 
-1.2 (unreleased)
-----------------
+1.1.2 (2011-11-25)
+------------------
+- Applied ``visualNoPrint`` class to megamenu to hide it in print mode
 
 1.1.1 (2011-08-05)
 ------------------
