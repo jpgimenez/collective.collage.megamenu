@@ -1,14 +1,14 @@
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from zope.app.component.hooks import getSite
+from zope.component.hooks import getSite
 from Products.CMFCore.utils import getToolByName
 from collective.collage.megamenu.interfaces import IMegamenuEnabled
 
 def megamenues_vocabulary(context):
     """
     A list of all megamenu enabled objects in site
-    
+
     @param context: Assume Plone site.
-    
+
     @return: SimpleVocabulary containing (menu UID, menu Title)
     """
     try:
@@ -19,7 +19,7 @@ def megamenues_vocabulary(context):
             context = getSite()
     except ImportError:
         pass
-           
+
     catalog = getToolByName(context, 'portal_catalog', None)
     if catalog is None:
         return SimpleVocabulary([])
