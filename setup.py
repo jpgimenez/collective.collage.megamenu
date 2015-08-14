@@ -34,6 +34,12 @@ setup(name='collective.collage.megamenu',
           'z3c.form',
           'collective.collage.nested',
       ],
+      extras_require={'test': [
+                          'interlude',
+                          'plone.app.robotframework',
+                          'plone.app.testing [robot] >=4.2.2',
+                          'Products.PloneTestCase',
+                          ]},
       entry_points="""
       # -*- Entry points: -*-
 
